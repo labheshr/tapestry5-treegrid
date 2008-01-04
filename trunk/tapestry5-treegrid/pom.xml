@@ -1,19 +1,57 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>tapestry5-treegrid</groupId>
-  <artifactId>tapestry5-treegrid</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <description></description>
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.tapestry</groupId>
-      <artifactId>tapestry-core</artifactId>
-      <version>5.0.7</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tapestry</groupId>
-      <artifactId>tapestry-ioc</artifactId>
-      <version>5.0.7</version>
-    </dependency>
-  </dependencies>
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>tapestry5-treegrid</groupId>
+	<artifactId>tapestry5-treegrid</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<description></description>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- best lock down version of the plugin too -->
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Tapestry-Module-Classes>
+								org.codelutin.tapestry.ComponentsModule
+							</Tapestry-Module-Classes>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>5.1</version>
+			<classifier>jdk15</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-core</artifactId>
+			<version>5.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-ioc</artifactId>
+			<version>5.0.7</version>
+		</dependency>
+	</dependencies>
 </project>
