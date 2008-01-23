@@ -42,8 +42,8 @@ public class TreeGrid {
         list.add(new RenderableNode(treeNode, depth, dotId));
         List<TreeNode> children = treeNode.getChildren();
         if (children != null) {
+            int i = 0;
             for (TreeNode node : children) {
-                int i = 0;
                 if (!list.contains(node)) {
                     buildSourceList(node, depth + 1, dotId + "-" + i);
                     i++;
