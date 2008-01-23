@@ -5,12 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.tapestry.MarkupWriter;
-import org.apache.tapestry.annotations.Environmental;
 import org.apache.tapestry.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry.annotations.IncludeStylesheet;
 import org.apache.tapestry.annotations.Parameter;
 import org.apache.tapestry.annotations.SupportsInformalParameters;
-import org.apache.tapestry.services.Heartbeat;
 import org.codelutin.tapestry.beans.RenderableNode;
 import org.codelutin.tapestry.beans.TreeNode;
 
@@ -40,16 +38,15 @@ public class TreeGrid {
      */
     private RenderableNode currentNode;
 
-    @Environmental
-    private Heartbeat heartbeat;
-
     private void buildSourceList(TreeNode treeNode, int depth, String dotId) {
         list.add(new RenderableNode(treeNode, depth, dotId));
-        TreeNode[] children = (TreeNode[]) treeNode.getChildren();
+        List<TreeNode> children = treeNode.getChildren();
         if (children != null) {
-            for (int i = 0; i < children.length; i++) {
-                if (!list.contains(children[i])) {
-                    buildSourceList(children[i], depth + 1, dotId + "-" + i);
+            for (TreeNode node : children) {
+                int i = 0;
+                if (!list.contains(node)) {
+                    buildSourceList(node, depth + 1, dotId + "-" + i);
+                    i++;
                 }
             }
         }
@@ -86,10 +83,9 @@ public class TreeGrid {
         return (iterator.hasNext());
     }
 
-    /** Begins a new heartbeat. */
+    /** Begins a node. */
     void beginRender() {
         currentNode = iterator.next();
-        heartbeat.begin();
     }
 
     void beforeRenderBody(MarkupWriter writer) {
@@ -101,8 +97,7 @@ public class TreeGrid {
         if (currentNode.getInnerNode().getType() == TreeNode.TYPE_FOLDER) {
             writer.element("div", "class", "tier" + currentNode.getDepth(),
                     "onclick", "toggleRowsDiv(this)");
-            writer.element("a", "href", "#", "class", "folderopen", "onclick",
-                    "toggleRows(this)");
+            writer.element("a", "href", "#", "class", "folderopen");
         } else {
             writer.element("div", "class", "tier" + currentNode.getDepth());
             writer.element("a", "href", "#", "class", "doc");
@@ -130,9 +125,8 @@ public class TreeGrid {
         writer.end();
     }
 
-    /** Ends the current heartbeat. */
+    /** Ends the node. */
     boolean afterRender() {
-        heartbeat.end();
         return (!iterator.hasNext());
     }
 
