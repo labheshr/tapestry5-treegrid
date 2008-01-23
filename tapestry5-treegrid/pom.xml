@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>tapestry5-treegrid</groupId>
 	<artifactId>tapestry5-treegrid</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<name>Tapestry5 Treegrid</name>
+
+	<version>0.0.3</version>
 	<description></description>
 
 	<build>
@@ -34,6 +37,15 @@
 
 		</plugins>
 	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>labs</id>
+			<url>
+				scp://labs.libre-entreprise.org/home/groups/lutinbuilder/htdocs/maven2/
+			</url>
+		</repository>
+	</distributionManagement>
 
 	<dependencies>
 		<dependency>
