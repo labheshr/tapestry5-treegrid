@@ -6,7 +6,7 @@
 	<artifactId>tapestry5-treegrid</artifactId>
 	<name>Tapestry5 Treegrid</name>
 
-	<version>0.0.3</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<description></description>
 
 	<build>
