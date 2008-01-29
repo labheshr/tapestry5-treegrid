@@ -6,7 +6,7 @@
 	<artifactId>tapestry5-treegrid</artifactId>
 	<name>Tapestry5 Treegrid</name>
 
-	<version>0.0.4-SNAPSHOT</version>
+	<version>5.0.9</version>
 	<description></description>
 
 	<build>
@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
 			<artifactId>tapestry-core</artifactId>
-			<version>5.0.7</version>
+			<version>5.0.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>

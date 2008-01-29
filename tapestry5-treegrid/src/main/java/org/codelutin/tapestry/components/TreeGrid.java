@@ -84,11 +84,9 @@ public class TreeGrid {
     }
 
     /** Begins a node. */
-    void beginRender() {
+    void beginRender(MarkupWriter writer) {
         currentNode = iterator.next();
-    }
 
-    void beforeRenderBody(MarkupWriter writer) {
         String[] columns = currentNode.getInnerNode().getColumns();
 
         writer.element("tr", "id", currentNode.getDotId(), "class", "a");
@@ -123,10 +121,11 @@ public class TreeGrid {
 
         // tr
         writer.end();
+
     }
 
     /** Ends the node. */
-    boolean afterRender() {
+    boolean afterRender(MarkupWriter writer) {
         return (!iterator.hasNext());
     }
 
