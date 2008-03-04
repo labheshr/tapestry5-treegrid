@@ -65,9 +65,10 @@ public class TreeGrid {
         iterator = list.iterator();
 
         // begin table
-        writer.element("table", "width", "100%");
+        writer.element("table", "width", "100%", "class", "t-data-grid");
 
         // header row
+        writer.element("thead");
         writer.element("tr");
         if (columnHeaders != null) {
             int col = 0;
@@ -79,6 +80,7 @@ public class TreeGrid {
             }
         }
         writer.end();
+        writer.end();
 
         return (iterator.hasNext());
     }
@@ -89,7 +91,7 @@ public class TreeGrid {
 
         String[] columns = currentNode.getInnerNode().getColumns();
 
-        writer.element("tr", "id", currentNode.getDotId(), "class", "a");
+        writer.element("tr", "id", currentNode.getDotId());
 
         writer.element("td");
         if (currentNode.getInnerNode().getType() == TreeNode.TYPE_FOLDER) {
@@ -112,9 +114,13 @@ public class TreeGrid {
         // td
         writer.end();
 
-        for (int i = 1; i < columns.length; i++) {
+        for (int i = 1; i < columnHeaders.size(); i++) {
             writer.element("td");
-            writer.writeRaw(columns[i]);
+            if (i<columns.length) {
+                writer.writeRaw(columns[i]);
+            } else {
+                writer.writeRaw("&nbsp;");
+            }
             // td
             writer.end();
         }
