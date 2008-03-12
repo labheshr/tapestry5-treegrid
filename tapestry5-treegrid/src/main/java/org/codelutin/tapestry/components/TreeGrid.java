@@ -12,32 +12,41 @@ import org.apache.tapestry.annotations.SupportsInformalParameters;
 import org.codelutin.tapestry.beans.RenderableNode;
 import org.codelutin.tapestry.beans.TreeNode;
 
+/**
+ * The Class TreeGrid.
+ */
 @SupportsInformalParameters
 @IncludeStylesheet("css/TreeGrid.css")
 @IncludeJavaScriptLibrary("js/TreeGrid.js")
 public class TreeGrid {
 
+    /** The list. */
     private List<RenderableNode> list;
 
-    /**
-     * Iterator to iterate over all tree elements
-     */
+    /** Iterator to iterate over all tree elements. */
     private Iterator<RenderableNode> iterator;
 
-    /**
-     * Defines the source Tree to walk over.
-     */
+    /** Defines the source Tree to walk over. */
     @Parameter(required = true)
     private List<TreeNode> source;
 
+    /** The column headers. */
     @Parameter(required = true)
     private List<String> columnHeaders;
 
-    /**
-     * Current node of the tree
-     */
+    /** Current node of the tree. */
     private RenderableNode currentNode;
 
+    /**
+     * Builds the source list.
+     * 
+     * @param treeNode
+     *            the tree node
+     * @param depth
+     *            the depth
+     * @param dotId
+     *            the dot id
+     */
     private void buildSourceList(TreeNode treeNode, int depth, String dotId) {
         list.add(new RenderableNode(treeNode, depth, dotId));
         List<TreeNode> children = treeNode.getChildren();
@@ -52,6 +61,14 @@ public class TreeGrid {
         }
     }
 
+    /**
+     * Setup render.
+     * 
+     * @param writer
+     *            the writer
+     * 
+     * @return true, if successful
+     */
     boolean setupRender(MarkupWriter writer) {
         if (source == null)
             return false;
@@ -85,7 +102,12 @@ public class TreeGrid {
         return (iterator.hasNext());
     }
 
-    /** Begins a node. */
+    /**
+     * Begins a node.
+     * 
+     * @param writer
+     *            the writer
+     */
     void beginRender(MarkupWriter writer) {
         currentNode = iterator.next();
 
@@ -130,11 +152,24 @@ public class TreeGrid {
 
     }
 
-    /** Ends the node. */
+    /**
+     * Ends the node.
+     * 
+     * @param writer
+     *            the writer
+     * 
+     * @return true, if after render
+     */
     boolean afterRender(MarkupWriter writer) {
         return (!iterator.hasNext());
     }
 
+    /**
+     * Cleanup render.
+     * 
+     * @param writer
+     *            the writer
+     */
     void cleanupRender(MarkupWriter writer) {
         // end table
         writer.end();
