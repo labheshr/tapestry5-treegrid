@@ -40,12 +40,9 @@ public class TreeGrid {
     /**
      * Builds the source list.
      * 
-     * @param treeNode
-     *            the tree node
-     * @param depth
-     *            the depth
-     * @param dotId
-     *            the dot id
+     * @param treeNode the tree node
+     * @param depth the depth
+     * @param dotId the dot id
      */
     private void buildSourceList(TreeNode treeNode, int depth, String dotId) {
         list.add(new RenderableNode(treeNode, depth, dotId));
@@ -64,8 +61,7 @@ public class TreeGrid {
     /**
      * Setup render.
      * 
-     * @param writer
-     *            the writer
+     * @param writer the writer
      * 
      * @return true, if successful
      */
@@ -105,8 +101,7 @@ public class TreeGrid {
     /**
      * Begins a node.
      * 
-     * @param writer
-     *            the writer
+     * @param writer the writer
      */
     void beginRender(MarkupWriter writer) {
         currentNode = iterator.next();
@@ -116,9 +111,9 @@ public class TreeGrid {
         writer.element("tr", "id", currentNode.getDotId());
 
         writer.element("td");
+
         if (currentNode.getInnerNode().getType() == TreeNode.TYPE_FOLDER) {
-            writer.element("div", "class", "tier" + currentNode.getDepth(),
-                    "onclick", "toggleRowsDiv(this)");
+            writer.element("div", "class", "tier" + currentNode.getDepth(), "onclick", "toggleRowsDiv(this)");
             writer.element("a", "href", "#", "class", "folderopen");
         } else {
             writer.element("div", "class", "tier" + currentNode.getDepth());
@@ -127,18 +122,21 @@ public class TreeGrid {
         // a
         writer.end();
 
-        if (columns.length > 0) {
+        if (columns.length > 0 && columns[0] != null && !columns[0].equals("")) {
             writer.writeRaw(columns[0]);
+        } else {
+            writer.writeRaw("&nbsp;");
         }
 
         // div
         writer.end();
+
         // td
         writer.end();
 
         for (int i = 1; i < columnHeaders.size(); i++) {
             writer.element("td");
-            if (i<columns.length) {
+            if (i < columns.length) {
                 writer.writeRaw(columns[i]);
             } else {
                 writer.writeRaw("&nbsp;");
@@ -155,8 +153,7 @@ public class TreeGrid {
     /**
      * Ends the node.
      * 
-     * @param writer
-     *            the writer
+     * @param writer the writer
      * 
      * @return true, if after render
      */
@@ -167,8 +164,7 @@ public class TreeGrid {
     /**
      * Cleanup render.
      * 
-     * @param writer
-     *            the writer
+     * @param writer the writer
      */
     void cleanupRender(MarkupWriter writer) {
         // end table
