@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.tapestry.MarkupWriter;
-import org.apache.tapestry.annotations.IncludeJavaScriptLibrary;
-import org.apache.tapestry.annotations.IncludeStylesheet;
-import org.apache.tapestry.annotations.Parameter;
-import org.apache.tapestry.annotations.SupportsInformalParameters;
+import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.codelutin.tapestry.beans.RenderableNode;
 import org.codelutin.tapestry.beans.TreeNode;
 
