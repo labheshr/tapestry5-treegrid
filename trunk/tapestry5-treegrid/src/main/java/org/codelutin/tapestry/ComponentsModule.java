@@ -1,7 +1,7 @@
 package org.codelutin.tapestry;
 
-import org.apache.tapestry.ioc.Configuration;
-import org.apache.tapestry.services.LibraryMapping;
+import org.apache.tapestry5.ioc.Configuration;
+import org.apache.tapestry5.services.LibraryMapping;
 
 public class ComponentsModule {
 

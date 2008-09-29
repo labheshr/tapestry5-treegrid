@@ -1,6 +1,5 @@
 package org.codelutin.tapestry.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TreeNode {
