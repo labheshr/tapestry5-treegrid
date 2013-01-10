@@ -5,8 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
-import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.codelutin.tapestry.beans.RenderableNode;
@@ -16,8 +15,7 @@ import org.codelutin.tapestry.beans.TreeNode;
  * The Class TreeGrid.
  */
 @SupportsInformalParameters
-@IncludeStylesheet("css/TreeGrid.css")
-@IncludeJavaScriptLibrary("js/TreeGrid.js")
+@Import(stylesheet={"css/TreeGrid.css"}, library={"js/TreeGrid.js"})
 public class TreeGrid {
 
     /** The list. */
@@ -84,12 +82,10 @@ public class TreeGrid {
         writer.element("thead");
         writer.element("tr");
         if (columnHeaders != null) {
-            int col = 0;
             for (String column : columnHeaders) {
                 writer.element("th");
                 writer.writeRaw(column);
                 writer.end();
-                col++;
             }
         }
         writer.end();
